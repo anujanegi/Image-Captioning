@@ -2,3 +2,4 @@
 features.pkl
 __pycache__
 *.pyc
+/Preprocessed\ Features/
