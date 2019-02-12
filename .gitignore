@@ -1,3 +1,4 @@
 /Dataset
 features.pkl
 __pycache__
+*.pyc
