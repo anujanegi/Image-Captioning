@@ -1,6 +1,7 @@
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Model
+from numpy import argmax
 
 def wordById(integer, tokenizer):
     for word, index in tokenizer.word_index.items():
