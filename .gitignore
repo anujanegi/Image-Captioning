@@ -4,3 +4,4 @@ __pycache__
 *.pyc
 /Preprocessed\ Features/
 model*h5
+example.jpg
