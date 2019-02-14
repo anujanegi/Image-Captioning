@@ -7,7 +7,8 @@ from keras.layers import Embedding
 from keras.layers import Dropout
 from keras.layers.merge import add
 from keras.callbacks import ModelCheckpoint
-from nltk.translate.bleu_score import *
+import nltk
+from caption import *
 
 def defineModel(vocabSize, maxLength):
     inputs1 = Input(shape=(4096,))
@@ -33,12 +34,16 @@ def compileModel(model):
 
 def evaluateModel(model, descriptions, photos, tokenizer, maxLength):
     actual, predicted = list(), list()
+    desc = ''
     for key, descriptionList in descriptions.items():
-        desc = description(model, tokenizer, photos[key], maxLength)
+        try:
+            desc = description(model, tokenizer, photos[key], maxLength)
+        except:
+            pass
         reference = [d.split() for d in descriptionList]
         actual.append(reference)
         predicted.append(desc.split())
-    print('BLEU-1: %f' % corpus_bleu(actual, predicted, weights=(1.0, 0, 0, 0)))
-    print('BLEU-2: %f' % corpus_bleu(actual, predicted, weights=(0.5, 0.5, 0, 0)))
-    print('BLEU-3: %f' % corpus_bleu(actual, predicted, weights=(0.3, 0.3, 0.3, 0)))
-    print('BLEU-4: %f' % corpus_bleu(actual, predicted, weights=(0.25, 0.25, 0.25, 0.25)))
+    print('BLEU-1: %f' % nltk.translate.bleu_score.sentence_bleu(actual, predicted, weights=(1.0, 0, 0, 0)))
+    print('BLEU-2: %f' % nltk.translate.bleu_score.corpus_bleu(actual, predicted, weights=(0.5, 0.5, 0, 0)))
+    print('BLEU-3: %f' % nltk.translate.bleu_score.corpus_bleu(actual, predicted, weights=(0.3, 0.3, 0.3, 0)))
+    print('BLEU-4: %f' % nltk.translate.bleu_score.corpus_bleu(actual, predicted, weights=(0.25, 0.25, 0.25, 0.25)))

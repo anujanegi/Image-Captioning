@@ -3,6 +3,7 @@ from tokenizer import *
 from model import *
 from caption import *
 from pickle import dump
+from tokenizer import *
 # training dataset
 
 filename = 'Dataset/Flickr8k_text/Flickr_8k.trainImages.txt'
@@ -15,17 +16,6 @@ tokenizer = tokenizer(trainDescriptions)
 dump(tokenizer, open('Preprocessed Features/tokenizer.pkl', 'wb'))
 vocabSize = len(tokenizer.word_index) + 1
 maxLength = maxLength(trainDescriptions)
-
-# test dataset
-#
-# filename = 'Dataset/Flickr8k_text/Flickr_8k.devImages.txt'
-#
-# testData = loadSet(filename)
-# testDescriptions = loadDescriptions('Preprocessed Features/descriptions.txt', testData)
-# testFeatures = loadFeatures('Preprocessed Features/features.pkl', testData)
-#
-# X1test, X2test, ytest = createSequence(tokenizer, maxLength, testDescriptions, testFeatures, vocabSize)
-
 
 def dataGenerator(descriptions, photos, tokenizer, maxLength):
     while 1:
