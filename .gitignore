@@ -3,4 +3,4 @@ features.pkl
 __pycache__
 *.pyc
 /Preprocessed\ Features/
-model*
+model*h5
