@@ -37,4 +37,4 @@ for i in range(epochs):
     # print(inputs[1].shape)
     # print(outputs.shape)
     model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1)
-    model.save('model_'+str(i)+'.h5')
+    model.save('Models/model_'+str(i)+'.h5')

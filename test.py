@@ -5,7 +5,7 @@ from caption import *
 
 tokenizer = load(open('Preprocessed Features/tokenizer.pkl', 'rb'))
 max_length = 34
-model = load_model('model_16.h5')
+model = load_model('Models/model_16.h5')
 photo = extractFeature('example.jpg')
 desc = description(model, tokenizer, photo, max_length)
 print(desc)
